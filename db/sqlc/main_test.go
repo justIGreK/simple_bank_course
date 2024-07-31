@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"os"
-	"simplebank/db/util"
+	"github.com/justIGreK/simple_bank_course/db/util"
 	"testing"
 
 	_ "github.com/lib/pq"

@@ -3,14 +3,14 @@ package api
 import (
 	"database/sql"
 	"net/http"
-	db "simplebank/db/sqlc"
+	db "github.com/justIGreK/simple_bank_course/db/sqlc"
 
 	"github.com/gin-gonic/gin"
 )
 
 type createAccountRequest struct {
 	Owner    string `json:"owner" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR RUB"`
+	Currency string `json:"currency" binding:"required,currency"`
 }
 
 func (server *Server) createAccount(ctx *gin.Context) {
@@ -57,9 +57,9 @@ func (server *Server) getAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-
+	
 	ctx.JSON(http.StatusOK, account)
-	return
+
 }
 
 type listAccountRequest struct {
